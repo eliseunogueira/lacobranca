@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LA Cobranças | Assessoria Personalizada de Crédito</title>
+    <meta
+      name="description"
+      content="Recuperação de crédito inteligente, ágil e focada em resultados. Mais de 20 anos de experiência em varejo, setor bancário e securitização de ativos." />
+
+    <script>
+      // Aplica o tema salvo antes do primeiro paint para evitar o efeito de "flash" visual
+      (function () {
+        const saved = localStorage.getItem('lacobrancas-theme');
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)',
+        ).matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              darkBg: '#0A192F',
+              darkCard: '#112240',
+              accentTeal: '#00D4B2',
+              accentGold: '#E5C158',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Montserrat', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .font-display {
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .recovery-path {
+        stroke-dasharray: 900;
+        stroke-dashoffset: 900;
+        animation: draw 2.2s ease-out 0.3s forwards;
+      }
+      .recovery-dot {
+        opacity: 0;
+        animation: fadein 0.6s ease-out 2.2s forwards;
+      }
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes fadein {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .theme-toggle-thumb {
+        transition: transform 0.25s ease;
+      }
+      .dark .theme-toggle-thumb {
+        transform: translateX(20px);
+      }
+      #mobile-menu {
+        transition:
+          max-height 0.3s ease,
+          opacity 0.2s ease;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-white dark:bg-darkBg text-[#334155] dark:text-[#CBD5E1] antialiased transition-colors duration-300">
+    <!-- HEADER -->
+    <header
+      class="fixed top-0 left-0 w-full bg-white/95 dark:bg-darkBg/95 backdrop-blur-md shadow-sm dark:shadow-lg border-b border-[#E2E8F0] dark:border-slate-800 z-50 transition-colors duration-300">
+      <div
+        class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3 shrink-0">
+          <span class="inline-block bg-white rounded-md p-1.5 shadow-sm">
+            <!-- Logos Dinâmicas controladas pelo ID -->
+            <img
+              id="site-logo"
+              src="Logo1.jpg"
+              alt="LA Cobranças"
+              class="h-16 w-auto rounded-sm transition-all duration-300" />
+          </span>
+          <span
+            class="hidden sm:inline-block text-[11px] bg-[#E2E8F0] dark:bg-white/10 px-2 py-1 text-[#64748B] dark:text-slate-300 rounded font-medium tracking-wide"
+            >Assessoria</span
+          >
+        </a>
+
+        <nav
+          class="hidden md:flex space-x-8 font-medium text-sm text-[#475569] dark:text-slate-400">
+          <a
+            href="#quem-somos"
+            class="hover:text-black dark:hover:text-white transition"
+            >Quem Somos</a
+          >
+          <a
+            href="#pilares"
+            class="hover:text-black dark:hover:text-white transition"
+            >Nossos Pilares</a
+          >
+          <a
+            href="#clientes"
+            class="hover:text-black dark:hover:text-white transition"
+            >Clientes</a
+          >
+          <a
+            href="#contato"
+            class="hover:text-black dark:hover:text-white transition"
+            >Contacto</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <!-- Alternador de Tema (Botão Corrigido) -->
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Alternar tema claro/escuro"
+            class="relative w-11 h-6 rounded-full bg-[#E2E8F0] dark:bg-slate-700 flex items-center px-0.5 shrink-0 transition-colors">
+            <span
+              class="theme-toggle-thumb w-5 h-5 rounded-full bg-white dark:bg-darkBg shadow flex items-center justify-center text-[10px]">
+              <span class="dark:hidden">☀️</span>
+              <span class="hidden dark:inline">🌙</span>
+            </span>
+          </button>
+
+          <a
+            href="https://wa.me/554130858280"
+            target="_blank"
+            rel="noopener"
+            class="bg-accentTeal hover:bg-[#05bfa1] dark:bg-accentGold dark:hover:bg-[#cdaf43] text-white dark:text-darkBg text-xs md:text-sm font-bold px-4 md:px-5 py-2.5 rounded shadow-md transition-all inline-block">
+            Falar com Consultor
+          </a>
+
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Abrir menu"
+            class="md:hidden text-slate-800 dark:text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <nav
+        id="mobile-menu"
+        class="md:hidden max-h-0 opacity-0 overflow-hidden bg-white dark:bg-darkBg border-t border-[#E2E8F0] dark:border-slate-800">
+        <div
+          class="px-6 py-4 flex flex-col space-y-3 text-sm font-medium text-[#475569] dark:text-slate-300">
+          <a href="#quem-somos" class="py-1">Quem Somos</a>
+          <a href="#pilares" class="py-1">Nossos Pilares</a>
+          <a href="#clientes" class="py-1">Clientes</a>
+          <a href="#contato" class="py-1">Contacto</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section
+      class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-slate-50 to-white dark:from-darkBg dark:to-[#0B132B] relative overflow-hidden transition-colors duration-300">
+      <div
+        class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-center relative z-10">
+        <div class="md:col-span-7 space-y-6">
+          <h1
+            class="text-3xl md:text-5xl font-bold leading-tight text-slate-900 dark:text-white">
+            Recuperação de crédito inteligente, <br />
+            <span class="text-[#00A88F] dark:text-accentGold"
+              >ágil e focada em resultados.</span
+            >
+          </h1>
+          <p
+            class="text-base md:text-lg text-[#475569] dark:text-[#94A3B8] font-light max-w-2xl leading-relaxed">
+            Com mais de 20 anos de sólida experiência ativa nos mercados de
+            varejo, bancário e de securitização de ativos, transformamos
+            passivos e inadimplências em fôlego financeiro e fluxo de caixa
+            contínuo por meio de um atendimento humanizado de excelência.
+          </p>
+          <div class="pt-4">
+            <a
+              href="#contato"
+              class="bg-accentTeal hover:bg-[#05bfa1] dark:bg-accentGold dark:hover:bg-[#cdaf43] text-white dark:text-darkBg font-bold text-sm tracking-wider px-8 py-4 rounded shadow-lg transition-all transform hover:-translate-y-0.5 inline-block">
+              OTIMIZAR MEU FLUXO DE CAIXA
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="hidden md:flex md:col-span-5 justify-center items-center"
+          aria-hidden="true">
+          <svg viewBox="0 0 360 220" class="w-full max-w-sm">
+            <line
+              x1="20"
+              y1="190"
+              x2="340"
+              y2="190"
+              stroke="currentColor"
+              class="text-slate-300 dark:text-slate-700"
+              stroke-width="1" />
+            <line
+              x1="20"
+              y1="20"
+              x2="20"
+              y2="190"
+              stroke="currentColor"
+              class="text-slate-300 dark:text-slate-700"
+              stroke-width="1" />
+            <path
+              id="svg-path"
+              class="recovery-path"
+              d="M20,175 C 70,178 110,160 140,150 S 210,130 240,95 S 300,40 340,25"
+              fill="none"
+              stroke="#00A88F"
+              stroke-width="3"
+              stroke-linecap="round" />
+            <circle
+              id="svg-dot"
+              class="recovery-dot"
+              cx="340"
+              cy="25"
+              r="6"
+              fill="#00A88F" />
+            <text
+              x="30"
+              y="205"
+              class="fill-slate-400 dark:fill-slate-500"
+              font-size="11">
+              Inadimplência
+            </text>
+            <text
+              x="255"
+              y="205"
+              class="fill-slate-400 dark:fill-slate-500"
+              font-size="11">
+              Fluxo de caixa
+            </text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUEM SOMOS -->
+    <section
+      id="quem-somos"
+      class="py-20 bg-white dark:bg-darkBg transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-16">
+          <h2
+            class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+            Experiência e Ética no Mercado Financeiro
+          </h2>
+          <p
+            class="text-base text-[#475569] dark:text-[#94A3B8] leading-relaxed">
+            A LA Cobranças é composta por profissionais altamente qualificados,
+            compreendendo negociadores experientes, analistas estatísticos de
+            carteira, consultores especializados e administradores focados na
+            excelência operacional. Atuamos de forma transparente e em estrito
+            compliance com as melhores práticas de governança empresarial e
+            jurídica.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-8">
+          <div
+            class="bg-[#F8FAFC] dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-lg shadow-sm">
+            <div
+              class="text-3xl font-bold text-slate-900 dark:text-accentGold mb-2">
+              +20 Anos
+            </div>
+            <p class="text-sm text-[#64748B] dark:text-slate-400">
+              De sólida inteligência e atuação estratégica voltada à recuperação
+              de ativos corporativos.
+            </p>
+          </div>
+          <div
+            class="bg-[#F8FAFC] dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-lg shadow-sm">
+            <div
+              class="text-3xl font-bold text-slate-900 dark:text-accentGold mb-2">
+              Nacional
+            </div>
+            <p class="text-sm text-[#64748B] dark:text-slate-400">
+              Gestão otimizada de grandes carteiras complexas de varejo,
+              comércio e instituições bancárias.
+            </p>
+          </div>
+          <div
+            class="bg-[#F8FAFC] dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-lg shadow-sm">
+            <div
+              class="text-3xl font-bold text-slate-900 dark:text-accentGold mb-2">
+              Compliance
+            </div>
+            <p class="text-sm text-[#64748B] dark:text-slate-400">
+              Processos 100% auditáveis, éticos e seguros em total conformidade
+              com as regras jurídicas vigentes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILARES -->
+    <section
+      id="pilares"
+      class="py-20 bg-[#F8FAFC] dark:bg-[#0B132B] transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2
+            class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+            Nossos Pilares Operacionais para Máxima Eficiência
+          </h2>
+          <p class="text-[#64748B] dark:text-[#94A3B8] text-sm md:text-base">
+            Unimos tecnologia avançada de localização e uma abordagem humanizada
+            para garantir os maiores índices de acordos do mercado.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="bg-white dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition">
+            <div
+              class="w-12 h-12 bg-slate-100 dark:bg-white/5 flex items-center justify-center rounded-lg text-slate-900 dark:text-accentGold font-bold text-lg mb-6">
+              01
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+              Tratamento e Higienização de Dados
+            </h3>
+            <p
+              class="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
+              Enriquecimento, validação e localização profunda de informações
+              cadastrais, financeiras, sócios e veículos. Garantimos que a
+              abordagem comercial chegue com precisão ao contacto correto.
+            </p>
+          </div>
+
+          <div
+            class="bg-white dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition">
+            <div
+              class="w-12 h-12 bg-slate-100 dark:bg-white/5 flex items-center justify-center rounded-lg text-slate-900 dark:text-accentGold font-bold text-lg mb-6">
+              02
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+              Canais de Multicomunicação
+            </h3>
+            <p
+              class="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
+              Construção de réguas inteligentes e automatizadas de cobrança
+              assertiva. Atuamos através de SMS estratégico, E-mail estruturado,
+              URA ativa e notificações físicas personalizadas.
+            </p>
+          </div>
+
+          <div
+            class="bg-white dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition">
+            <div
+              class="w-12 h-12 bg-slate-100 dark:bg-white/5 flex items-center justify-center rounded-lg text-slate-900 dark:text-accentGold font-bold text-lg mb-6">
+              03
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+              Atendimento Digital Dinâmico
+            </h3>
+            <p
+              class="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
+              Facilidade técnica na ponta para o utilizador devedor.
+              Disponibilizamos portais de negociação web, chats dedicados e
+              acionamentos rápidos via WhatsApp para maximizar acordos amigáveis
+              espontâneos.
+            </p>
+          </div>
+
+          <div
+            class="bg-white dark:bg-darkCard p-8 border border-[#E2E8F0] dark:border-slate-800 rounded-xl shadow-sm hover:shadow-md transition">
+            <div
+              class="w-12 h-12 bg-slate-100 dark:bg-white/5 flex items-center justify-center rounded-lg text-slate-900 dark:text-accentGold font-bold text-lg mb-6">
+              04
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+              Estratégia e Execução de Carteiras
+            </h3>
+            <p
+              class="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">
+              Inteligência analítica contínua. Desenvolvemos estratégias de
+              segmentação sob medida para o perfil da sua carteira, respeitando
+              as particularidades do Retalho, Setor Bancário ou Securitizadoras.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section id="clientes">
+      <h2>Nossos Clientes</h2>
+      <div class="overflow-hidden">
+        <div
+          style="
+            display: flex;
+            gap: 70px;
+            animation: scroll 40s linear infinite;
+            align-items: center;
+            white-space: nowrap;
+            &:nth-child(1) {
+              background: #7958ff;
+            }
+
+            &:nth-child(2) {
+              background: #5d34f2;
+            }
+
+            &:nth-child(3) {
+              background: #4300da;
+            }
+          ">
+          <img src="1.png" height="30" /><img src="2.png" height="30" /><img
+            src="3.png"
+            height="30" /><img src="4.webp" height="30" /><img
+            src="5.png"
+            height="30" /><img src="6.png" height="30" /><img
+            src="7.png"
+            height="30" /><img src="8.png" height="30" />
+        </div>
+      </div>
+    </section>
+    <style>
+      @keyframes scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+
+    <!-- CONTATO -->
+    <section
+      id="contato"
+      class="py-20 bg-[#0A2540] dark:bg-[#0B132B] text-white transition-colors duration-300">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          Pronto para recuperar a saúde financeira do seu negócio?
+        </h2>
+        <p
+          class="text-[#E2E8F0] dark:text-[#94A3B8] font-light text-sm md:text-base mb-10 max-w-xl mx-auto">
+          Solicite uma análise inicial consultiva da sua carteira de cobrança
+          com os nossos especialistas corporativos.
+        </p>
+
+        <form
+          id="form-contato"
+          action="enviar.php"
+          method="POST"
+          class="grid sm:grid-cols-2 gap-4 text-left max-w-2xl mx-auto text-slate-800">
+          <div class="sm:col-span-1">
+            <label
+              class="block text-xs font-semibold text-[#E2E8F0] uppercase mb-2"
+              >Nome da Empresa</label
+            >
+            <input
+              required
+              type="text"
+              name="empresa"
+              placeholder="Ex: Minha Empresa LTDA"
+              class="w-full px-4 py-3 rounded bg-white border border-[#E2E8F0] focus:outline-none focus:ring-2 focus:ring-accentTeal text-sm" />
+          </div>
+          <div class="sm:col-span-1">
+            <label
+              class="block text-xs font-semibold text-[#E2E8F0] uppercase mb-2"
+              >E-mail Corporativo</label
+            >
+            <input
+              required
+              type="email"
+              name="email"
+              placeholder="Ex: contato@empresa.com"
+              class="w-full px-4 py-3 rounded bg-white border border-[#E2E8F0] focus:outline-none focus:ring-2 focus:ring-accentTeal text-sm" />
+          </div>
+          <div class="sm:col-span-2">
+            <label
+              class="block text-xs font-semibold text-[#E2E8F0] uppercase mb-2"
+              >Detalhes da Carteira (Opcional)</label
+            >
+            <textarea
+              name="mensagem"
+              rows="4"
+              placeholder="Descreva o seu segmento de mercado e o volume aproximado de ativos a recuperar..."
+              class="w-full px-4 py-3 rounded bg-white border border-[#E2E8F0] focus:outline-none focus:ring-2 focus:ring-accentTeal text-sm"></textarea>
+          </div>
+          <div class="sm:col-span-2 pt-4">
+            <button
+              type="submit"
+              class="w-full bg-accentTeal hover:bg-[#05bfa1] dark:bg-accentGold dark:hover:bg-[#cdaf43] text-white dark:text-darkBg font-bold text-sm tracking-wider py-4 rounded shadow-md transition-all">
+              SOLICITAR DIAGNÓSTICO JÁ
+            </button>
+          </div>
+          <p
+            id="form-feedback"
+            class="sm:col-span-2 text-sm font-medium text-center mt-2 hidden"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-[#07192B] text-[#94A3B8] py-8 border-t border-slate-800 text-xs">
+      <div
+        class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p>
+          &copy; 2026 LA Cobranças. Todos os direitos reservados. Telefone: (41)
+          3085-8280
+        </p>
+        <span class="text-accentTeal dark:text-accentGold"
+          >Segurança da Informação &amp; LGPD Compliant</span
+        >
+      </div>
+    </footer>
+
+    <script>
+      const toggleBtn = document.getElementById('theme-toggle');
+      const logoImg = document.getElementById('site-logo');
+      const svgPath = document.getElementById('svg-path');
+      const svgDot = document.getElementById('svg-dot');
+
+      // Atualiza dinamicamente as fontes das imagens e elementos de acordo com o tema ativo
+      function atualizarAssetsTema(isDark) {
+        if (isDark) {
+          logoImg.src = 'logo2.png'; // Carrega a Logo Escura da LA Cobranças
+          if (svgPath) svgPath.setAttribute('stroke', '#E5C158');
+          if (svgDot) svgDot.setAttribute('fill', '#E5C158');
+        } else {
+          logoImg.src = 'Logo1.png'; // Carrega a Logo Clara da LA Cobranças
+          if (svgPath) svgPath.setAttribute('stroke', '#00A88F');
+          if (svgDot) svgDot.setAttribute('fill', '#00A88F');
+        }
+      }
+
+      // Inicialização correta da logo baseado no estado atual da página
+      atualizarAssetsTema(document.documentElement.classList.contains('dark'));
+
+      // Listener do botão de alternância
+      toggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('lacobrancas-theme', isDark ? 'dark' : 'light');
+        atualizarAssetsTema(isDark);
+      });
+
+      // Menu mobile
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuBtn.addEventListener('click', () => {
+        const isOpen =
+          mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== '0px';
+        mobileMenu.style.maxHeight = isOpen
+          ? '0px'
+          : mobileMenu.scrollHeight + 'px';
+        mobileMenu.style.opacity = isOpen ? '0' : '1';
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.style.maxHeight = '0px';
+          mobileMenu.style.opacity = '0';
+        });
+      });
+
+      // Envio assíncrono conectado ao novo enviar.php
+      const form = document.getElementById('form-contato');
+      const feedback = document.getElementById('form-feedback');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'PROCESSANDO...';
+        feedback.classList.add('hidden');
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+          });
+
+          const data = await res.json();
+
+          feedback.textContent = data.message;
+          feedback.classList.remove('hidden');
+
+          if (data.success) {
+            feedback.className =
+              'sm:col-span-2 text-sm font-medium text-center mt-2 text-emerald-500 dark:text-accentGold';
+            form.reset();
+          } else {
+            feedback.className =
+              'sm:col-span-2 text-sm font-medium text-center mt-2 text-red-500';
+          }
+        } catch (err) {
+          feedback.textContent =
+            'Não foi possível estabelecer ligação ao servidor. Use o nosso contacto de WhatsApp.';
+          feedback.classList.remove('hidden');
+          feedback.className =
+            'sm:col-span-2 text-sm font-medium text-center mt-2 text-red-500';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+    </script>
+  </body>
+</html>
